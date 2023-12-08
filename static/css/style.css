@@ -9,7 +9,8 @@ html {
   height: 100%;
 }
 
-.legend {
+.legend,
+.desc {
    background: #ffffff;
    padding: 5px;
 }

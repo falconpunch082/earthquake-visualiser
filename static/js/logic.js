@@ -59,6 +59,7 @@ function addLegend(assigned_map) {
 
 // Performing API call to check all earthquakes from past 7 days
 d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson").then(function(quakeData){
+    // Performing JSON call in then wrapper to ensure that both API and JSON file are ready before continuning on
     d3.json("https://falconpunch082.github.io/earthquake-visualiser/static/PB2002_boundaries.json").then(function(json){
         // Assigning variable to frequently-used datapoint
         let earthquakes = quakeData["features"];
@@ -100,7 +101,7 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geoj
 
             // Determining how big the circle will be through magnitude
             function radius(m) {
-                let result = m * 30000;
+                let result = m * 5;
                 
                 // Ran into errors in generating circles because returned value is NaN
                 // Converting all NaNs to numbers
@@ -121,7 +122,7 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geoj
             }
 
             // Pushing circle markers into array
-            quake_circles.push(L.circle(coords, 
+            quake_circles.push(L.circleMarker(coords, 
                                         {
                                         fillOpacity: 0.75,
                                         fillColor: colour(depth),
@@ -131,6 +132,7 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geoj
                                         ).bindPopup(popup(loc)));
 
             }
+
         
         // Creating layer groups for quakes and fault lines
         let quakes = L.layerGroup(quake_circles);
