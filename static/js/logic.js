@@ -59,7 +59,7 @@ function addLegend(assigned_map) {
 
 // Performing API call to check all earthquakes from past 7 days
 d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson").then(function(quakeData){
-    d3.json("http://localhost:5500/static/PB2002_boundaries.json").then(function(json){
+    d3.json("https://falconpunch082.github.io/earthquake-visualiser/static/PB2002_boundaries.json").then(function(json){
         // Assigning variable to frequently-used datapoint
         let earthquakes = quakeData["features"];
 
